@@ -1,25 +1,36 @@
 # 💰 Easy Expense Tracker
 
-A full-stack expense tracking application built with the MERN stack. It helps users record income and expenses, monitor their balance, and organize financial transactions through a clean, responsive dashboard.
+A full-stack expense tracking application built using the MERN stack. It helps users record income and expenses, track their balance, and manage financial transactions through a clean, responsive dashboard.
+
+## 🌐 Live Demo
+
+- **Frontend:** https://easy-expense-tracker-kappa.vercel.app
+- **Backend API:** https://easy-expense-tracker-aguc.vercel.app
+- **GitHub Repository:** https://github.com/junaidmukhtar152/easy-expense-tracker
+
+## 📸 Screenshots
+
+### Dashboard
+
+![Easy Expense Tracker Dashboard](screenshots/dashboard.png)
 
 ## ✨ Features
 
 - Add income and expense transactions
 - View all saved transactions
-- Edit existing transactions
-- Delete transactions
-- Calculate total income and total expenses
-- Calculate the current balance
+- Edit and delete transactions
+- Calculate total income and expenses
+- Calculate current balance
 - Search transactions by description
 - Filter transactions by type
 - Filter transactions by date range
 - Validate transaction inputs
-- Store transaction data in MongoDB
+- Store transactions in MongoDB
 - Responsive interface for desktop and mobile
 
 ## 🛠️ Technologies Used
 
-### Frontend
+**Frontend**
 
 - React.js
 - Vite
@@ -27,16 +38,20 @@ A full-stack expense tracking application built with the MERN stack. It helps us
 - HTML5
 - CSS3
 
-### Backend
+**Backend**
 
 - Node.js
 - Express.js
 - Mongoose
 - CORS
 
-### Database
+**Database**
 
-- MongoDB
+- MongoDB Atlas
+
+**Deployment**
+
+- Vercel
 
 ## 📁 Project Structure
 
@@ -56,15 +71,18 @@ easy-expense-tracker/
 │   │   └── main.jsx
 │   ├── index.html
 │   └── package.json
+├── screenshots/
+│   └── dashboard.png
+├── .gitignore
 └── README.md
 ```
 
 ## ⚙️ Prerequisites
 
-Before running this project, install:
+Before running the project locally, install:
 
 - Node.js and npm
-- MongoDB running locally or an accessible MongoDB database
+- MongoDB Atlas account or a local MongoDB server
 - Visual Studio Code (recommended)
 
 ## 🚀 Installation and Setup
@@ -72,44 +90,30 @@ Before running this project, install:
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/junaidmukhtar152/easy-expense-tracker.git
 cd easy-expense-tracker
 ```
 
-Replace `YOUR_GITHUB_REPOSITORY_URL` with your actual GitHub repository URL.
-
-### 2. Set up the backend
-
-Open a terminal in the backend folder:
+### 2. Configure the backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Make sure your MongoDB connection string is configured in your backend.
+Create a `.env` file in the backend folder and configure your MongoDB connection string:
 
-Example local connection string:
-
-```text
-mongodb://127.0.0.1:27017/easy_expense_tracker
+```env
+MONGO_URI=your_mongodb_connection_string
 ```
 
-Start the backend:
+Never commit your real database password or connection string to GitHub.
 
-```bash
-node server.js
-```
+Start the backend using the command appropriate for your project's server configuration.
 
-The backend runs at:
+### 3. Configure the frontend
 
-```text
-http://localhost:5000
-```
-
-### 3. Set up the frontend
-
-Open a second terminal in the frontend folder:
+Open a second terminal:
 
 ```bash
 cd frontend
@@ -117,7 +121,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL displayed by Vite, usually:
+Open the local URL shown by Vite, usually:
 
 ```text
 http://localhost:5173
@@ -125,49 +129,47 @@ http://localhost:5173
 
 ## 🔌 API Endpoints
 
-Base URL: `http://localhost:5000/api/transactions`
+Base URL for local development:
 
-| Method | Endpoint | Description          |
-| ------ | -------- | -------------------- |
-| POST   | `/`      | Create a transaction |
-| GET    | `/`      | Get all transactions |
-| GET    | `/:id`   | Get one transaction  |
-| PUT    | `/:id`   | Update a transaction |
-| DELETE | `/:id`   | Delete a transaction |
+`http://localhost:5000/api/transactions`
+
+| Method | Endpoint | Description               |
+| ------ | -------- | ------------------------- |
+| GET    | `/`      | Retrieve all transactions |
+| GET    | `/:id`   | Retrieve one transaction  |
+| POST   | `/`      | Create a transaction      |
+| PUT    | `/:id`   | Update a transaction      |
+| DELETE | `/:id`   | Delete a transaction      |
 
 ## 📊 How It Works
 
 1. The user enters a transaction description, amount, and type.
-2. React sends the transaction to the Express backend.
-3. Mongoose saves the transaction in MongoDB.
-4. The frontend retrieves and displays saved transactions.
-5. React calculates income, expenses, and balance from the transaction data.
-6. Search and filters help users find particular transactions.
+2. React sends the request to the Express backend.
+3. Mongoose stores the transaction in MongoDB.
+4. The frontend retrieves and displays transactions.
+5. The application calculates income, expenses, and balance.
+6. Search and filters help users find specific transactions.
 
-## 🎯 Project Objective
-
-The objective of this project is to practice full-stack web development by connecting a React frontend, an Express and Node.js backend, and a MongoDB database.
-
-## 📚 Learning Outcomes
+## 🎯 Learning Outcomes
 
 Through this project, I practiced:
 
-- Building a user interface with React
-- Managing state and handling form submissions
-- Creating REST API endpoints with Express
+- Building interfaces with React
+- Managing state and form submissions
+- Creating REST API endpoints
 - Performing CRUD operations
-- Connecting a Node.js application to MongoDB
-- Handling frontend and backend communication
-- Applying form validation and error handling
+- Connecting Node.js with MongoDB
+- Connecting frontend and backend
+- Handling form validation and errors
 - Improving responsive UI/UX design
+- Deploying a full-stack application
 
 ## 🔮 Future Improvements
 
-- User registration and login
+- User registration and authentication
 - Interactive financial charts
 - Monthly budgets and spending reports
 - Export transactions to CSV
-- Online deployment
 
 ## 👨‍💻 Author
 
@@ -175,8 +177,8 @@ Through this project, I practiced:
 
 BS Software Engineering Student
 
-GitHub: [junaidmukhtar152](https://github.com/junaidmukhtar152)
+- GitHub: https://github.com/junaidmukhtar152
 
 ## 📄 License
 
-This project is available for learning and educational purposes.
+This project is available for learning and educational purposes. No separate open-source license is specified.
