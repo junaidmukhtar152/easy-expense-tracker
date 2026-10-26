@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
+const API_URL = "https://easy-expense-tracker-aguc.vercel.app/api/transactions";
+
 function App() {
   // 1. State variables
   const [description, setDescription] = useState("");
@@ -33,11 +35,11 @@ function App() {
     });
   }
 
-  // 3. Load transactions from the backend
+  // 3. Load transactions from the deployed backend
   useEffect(() => {
     async function fetchTransactions() {
       try {
-        const response = await fetch("http://localhost:5000/api/transactions");
+        const response = await fetch(API_URL);
 
         if (!response.ok) {
           throw new Error("Could not load transactions.");
@@ -83,9 +85,7 @@ function App() {
       const isEditing = editingId !== null;
 
       const response = await fetch(
-        isEditing
-          ? `http://localhost:5000/api/transactions/${editingId}`
-          : "http://localhost:5000/api/transactions",
+        isEditing ? `${API_URL}/${editingId}` : API_URL,
         {
           method: isEditing ? "PUT" : "POST",
           headers: {
@@ -146,12 +146,9 @@ function App() {
     setMessage("");
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/transactions/${id}`,
-        {
-          method: "DELETE",
-        },
-      );
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+      });
 
       const data = await response.json();
 
@@ -222,7 +219,6 @@ function App() {
     const dateString = `${localYear}-${localMonth}-${localDay}`;
 
     const matchesStartDate = !startDate || dateString >= startDate;
-
     const matchesEndDate = !endDate || dateString <= endDate;
 
     return matchesSearch && matchesFilter && matchesStartDate && matchesEndDate;
@@ -240,7 +236,6 @@ function App() {
         {/* Transaction overview */}
         <section className="transactions">
           <h2>Transaction Overview</h2>
-
           <p>Total Transactions: {totalTransactions}</p>
           <p>Income Transactions: {incomeCount}</p>
           <p>Expense Transactions: {expenseCount}</p>
@@ -312,6 +307,7 @@ function App() {
         {/* Recent transactions */}
         <section className="transactions">
           <h2>Recent Transactions</h2>
+
           <div className="date-filters">
             <div>
               <label htmlFor="startDate">Start Date</label>
@@ -319,7 +315,7 @@ function App() {
                 id="startDate"
                 type="date"
                 value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                onChange={(event) => setStartDate(event.target.value)}
               />
             </div>
 
@@ -329,7 +325,7 @@ function App() {
                 id="endDate"
                 type="date"
                 value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                onChange={(event) => setEndDate(event.target.value)}
               />
             </div>
 
@@ -343,6 +339,7 @@ function App() {
               Clear Dates
             </button>
           </div>
+
           {/* Search input */}
           <input
             type="text"
@@ -402,9 +399,7 @@ function App() {
               <div className="transaction-item" key={transaction._id}>
                 <div className="transaction-details">
                   <strong>{transaction.description}</strong>
-
                   <span className="transaction-type">{transaction.type}</span>
-
                   <span className="transaction-date">
                     {formatDate(transaction.date)}
                   </span>
